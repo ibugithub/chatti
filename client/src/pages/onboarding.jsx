@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { useStateProvider } from "@/context/StateContext";
 import Input from "@/components/common/Input";
+import Avatar from "@/components/common/Avatar";
 
 function onboarding() {
   const [state, dispatch] = useStateProvider();
@@ -19,7 +20,9 @@ function onboarding() {
         <div className="flex flex-col justify-center items-center mt-5">
           <Input name="Name" state={name} setState={setName} label />
           <Input name="About" state={about} setState={setAbout} label />
-          <Input name="Image" state={image} setState={setImage} label />
+        </div>
+        <div>
+          <Avatar type='xl' image={image} setImage={setImage}/>
         </div>
       </div>
     </div>
