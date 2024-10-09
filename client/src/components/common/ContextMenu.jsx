@@ -22,6 +22,7 @@ function ContextMenu({ options, cordinates, contextMenu, setContextMenu }) {
   const handleClick = (e, callback) => {
     e.stopPropagation();
     setContextMenu(false);
+    callback();
   };
   return (
     <>
