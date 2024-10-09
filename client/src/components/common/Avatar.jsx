@@ -5,6 +5,7 @@ import ContextMenu from "./ContextMenu";
 import PhotoPicker from "./PhotoPicker";
 import { readFile } from "./readFile";
 import { PhotoLibrary } from "./PhotoLibrary";
+import CapturePhoto from "./CapturePhoto";
 
 const Avatar = ({ type, image, setImage }) => {
   const [hover, setHover] = useState(false);
@@ -15,6 +16,7 @@ const Avatar = ({ type, image, setImage }) => {
   });
   const [grabPhoto, setGrabPhoto] = useState(false);
   const [showPhotLibrary, setShowPhtotoLibrary] = useState(false);
+  const [showCapturedImage, setShowCapturedImage] = useState(false);
 
   useEffect(() => {
     if (grabPhoto) {
@@ -29,7 +31,9 @@ const Avatar = ({ type, image, setImage }) => {
   }, [grabPhoto]);
 
   const contextMenuOptions = [
-    { name: "Take photo", callback: () => {} },
+    { name: "Take photo", callback: () => {
+      setShowCapturedImage(true);
+    } },
     {
       name: "Choose From Library",
       callback: () => {
@@ -68,7 +72,6 @@ const Avatar = ({ type, image, setImage }) => {
   };
 
   const showContextMenu = (e) => {
-    console.log("empty box clicked");
     e.preventDefault();
     setIsContextMenuVisible(true);
     setContextMenuCordinates({
@@ -108,7 +111,7 @@ const Avatar = ({ type, image, setImage }) => {
             onMouseLeave={() => setHover(false)}
           >
             <div
-              className={`h-60 w-60 bg-photopicker-overlay-background absolute top-0 left-0 flex justify-center rounded-full items-center flex-col text-center gap-2 ${
+              className={`h-40 w-40 bg-photopicker-overlay-background absolute top-0 left-0 flex justify-center rounded-full items-center flex-col text-center gap-2 z-10 ${
                 hover ? "visible" : "hidden"
               } `}
               id="context-opener"
@@ -121,13 +124,12 @@ const Avatar = ({ type, image, setImage }) => {
               />
             </div>
 
-            <div className="w-60 h-60">
+            <div className="w-40 h-40">
               <Image
                 src={image}
                 alt="avatar"
-                height={400}
-                width={400}
-                className="rounded-full fill "
+                fill
+                className="rounded-full"
               />
             </div>
           </div>
@@ -146,6 +148,12 @@ const Avatar = ({ type, image, setImage }) => {
         <PhotoLibrary
           setImage={setImage}
           showPhotoLibrary={setShowPhtotoLibrary}
+        />
+      )}
+      {showCapturedImage && (
+        <CapturePhoto
+          setImage={setImage}
+          showCapturedImage={setShowCapturedImage}
         />
       )}
     </>

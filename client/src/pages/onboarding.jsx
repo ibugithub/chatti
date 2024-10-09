@@ -21,7 +21,7 @@ function onboarding() {
           <Input name="Name" state={name} setState={setName} label />
           <Input name="About" state={about} setState={setAbout} label />
         </div>
-        <div>
+        <div className="mt-10">
           <Avatar type='xl' image={image} setImage={setImage}/>
         </div>
       </div>
