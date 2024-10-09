@@ -4,6 +4,7 @@ import { FaCamera } from "react-icons/fa";
 import ContextMenu from "./ContextMenu";
 import PhotoPicker from "./PhotoPicker";
 import { readFile } from "./readFile";
+import { PhotoLibrary } from "./PhotoLibrary";
 
 const Avatar = ({ type, image, setImage }) => {
   const [hover, setHover] = useState(false);
@@ -13,6 +14,7 @@ const Avatar = ({ type, image, setImage }) => {
     y: 0,
   });
   const [grabPhoto, setGrabPhoto] = useState(false);
+  const [showPhotLibrary, setShowPhtotoLibrary] = useState(false);
 
   useEffect(() => {
     if (grabPhoto) {
@@ -28,7 +30,12 @@ const Avatar = ({ type, image, setImage }) => {
 
   const contextMenuOptions = [
     { name: "Take photo", callback: () => {} },
-    { name: "Choose From Library", callback: () => {} },
+    {
+      name: "Choose From Library",
+      callback: () => {
+        setShowPhtotoLibrary(true);
+      },
+    },
     {
       name: "Upload Photo",
       callback: () => {
@@ -51,7 +58,7 @@ const Avatar = ({ type, image, setImage }) => {
     }
     try {
       const fileDataUrl = await readFile(file);
-      const data = document.createElement('img');
+      const data = document.createElement("img");
       data.src = fileDataUrl;
       data.setAttribute("data-src", fileDataUrl);
       setImage(fileDataUrl);
@@ -135,6 +142,12 @@ const Avatar = ({ type, image, setImage }) => {
         />
       )}
       {grabPhoto && <PhotoPicker handler={handlePhotoPickerChange} />}
+      {showPhotLibrary && (
+        <PhotoLibrary
+          setImage={setImage}
+          showPhotoLibrary={setShowPhtotoLibrary}
+        />
+      )}
     </>
   );
 };
