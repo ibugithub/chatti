@@ -4,15 +4,8 @@ function ContextMenu({ options, cordinates, contextMenu, setContextMenu }) {
   const contextMenuRef = useRef(null);
   useEffect(() => {
     const handleOutsideClick = (e) => {
-      console.log("the e.target is ", e.target);
-      console.log("the e.target.id is ", e.target.id);
-      console.log(
-        "document clicked ... and the current ref is ",
-        contextMenuRef.current
-      );
       if (e.target.id !== "context-opener" &&
         !e.target.closest("#context-opener2")) {
-        console.log('in the first if')
         if (
           contextMenuRef.current &&
           !contextMenuRef.current.contains(e.target)
