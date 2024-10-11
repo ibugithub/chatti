@@ -15,5 +15,5 @@ model User {
   email String @unique
   name String
   about String @default("") 
-  profilePic String @default("")
+  photoUrl String @default("")
 }
