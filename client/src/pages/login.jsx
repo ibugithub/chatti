@@ -15,15 +15,22 @@ function login() {
   const handleLogin = async () => {
     const provider = new GoogleAuthProvider();
     const {
-      user: { displayName: name, email, photoURL },
+      user: { displayName: name, email, photoURL},
     } = await signInWithPopup(firebaseAuth, provider);
     try {
       if (email) {
         const { data } = await axios.post(checkUser, { email });
         if (!data.status) {
-          dispatch({type: reducerCases.SET_NEW_USER, newUser: true});
-          dispatch({type: reducerCases.SET_USER_INFO, userInfo: {name, email, photoURL}})
-          router.push('/onboarding')
+          dispatch({ type: reducerCases.SET_NEW_USER, newUser: true });
+          dispatch({
+            type: reducerCases.SET_USER_INFO,
+            userInfo: { name, email, photoURL },
+          });
+          router.push("/onboarding");
+        } else {
+          console.log('the user already exists and the data is ', data);
+          dispatch({ type: reducerCases.SET_USER_INFO, userInfo: data.data });
+          router.push("/");
         }
       }
     } catch (error) {}

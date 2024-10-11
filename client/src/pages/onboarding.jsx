@@ -13,7 +13,7 @@ function onboarding() {
   const [state, dispatch] = useStateProvider();
   const [name, setName] = useState(state.userInfo.name || "");
   const [about, setAbout] = useState("");
-  const [image, setImage] = useState("/default_avatar.png");
+  const [photoUrl, setPhotoUrl] = useState("/default_avatar.png");
 
   useEffect(() => {
     if (!state.newUser && !state.userInfo.email) {
@@ -27,19 +27,18 @@ function onboarding() {
   const saveUserInfoHandler = async () => {
     if (validateInfo()) {
       const email = state.userInfo.email;
-      console.log("the email is  ", email);
       try {
         const response = await axios.post(saveUserInfo, {
           name,
           email,
           about,
-          image,
+          photoUrl,
         });
         if (response.status === 201) {
           dispatch({ type: reducerCases.SET_NEW_USER, newUser: false });
           dispatch({
             type: reducerCases.SET_USER_INFO,
-            userInfo: { name, email, about, proiflePic: image },
+            userInfo: { name, email, about, photoUrl },
           });
           router.push("/");
         }
@@ -48,7 +47,9 @@ function onboarding() {
       }
     }
   };
-  const validateInfo = () => { return true};
+  const validateInfo = () => {
+    return true;
+  };
   return (
     <div className="bg-panel-header-background h-screen w-screen text-white flex justify-center items-center flex-col">
       <div className="flex justify-center items-center gap-2">
@@ -70,7 +71,7 @@ function onboarding() {
           </div>
         </div>
         <div className="mt-10">
-          <Avatar type="xl" image={image} setImage={setImage} />
+          <Avatar type="xl" image={photoUrl} setImage={setPhotoUrl} />
         </div>
       </div>
     </div>

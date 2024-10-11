@@ -1,9 +1,11 @@
+import { useEffect } from "react"
 import { reducerCases } from "./constants"
 
 export const initialState = {
   userInfo: {},
   newUser: false,
 }
+
 export const reducer = (state, action) => {
   switch (action.type) {
     case reducerCases.SET_USER_INFO:
