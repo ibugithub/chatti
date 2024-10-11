@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { reducerCases } from "./constants"
 
 export const initialState = {
@@ -9,6 +8,7 @@ export const initialState = {
 export const reducer = (state, action) => {
   switch (action.type) {
     case reducerCases.SET_USER_INFO:
+      localStorage.setItem('userInfo', JSON.stringify(action.userInfo))
       return {
         ...state, userInfo: action.userInfo,
       }

@@ -87,6 +87,7 @@ const Avatar = ({ type, image, setImage }) => {
             <Image
               src={image}
               alt="avatar"
+              fill
               className="rounded-full fill cursor-pointer"
             />
           </div>

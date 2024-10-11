@@ -28,7 +28,6 @@ function login() {
           });
           router.push("/onboarding");
         } else {
-          console.log('the user already exists and the data is ', data);
           dispatch({ type: reducerCases.SET_USER_INFO, userInfo: data.data });
           router.push("/");
         }
