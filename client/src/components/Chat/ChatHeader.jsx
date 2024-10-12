@@ -5,7 +5,7 @@ import { IoVideocam } from "react-icons/io5";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
-function ChatHeader() {
+export const ChatHeader = () => {
   return (
     <>
       <div className="h-16 px-4 py-3 flex justify-between items-center bg-panel-header-background z-10">
@@ -26,5 +26,3 @@ function ChatHeader() {
     </>
   );
 }
-
-export default ChatHeader;

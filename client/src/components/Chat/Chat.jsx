@@ -1,7 +1,7 @@
 import React from "react";
-import ChatHeader from "./ChatHeader";
-import ChatContainer from "./ChatContainer";
-import MessageBar from "./MessageBar";
+import {ChatHeader} from "./ChatHeader";
+import {ChatContainer} from "./ChatContainer";
+import {MessageBar} from "./MessageBar";
 
 export const Chat =()  => {
   return (
